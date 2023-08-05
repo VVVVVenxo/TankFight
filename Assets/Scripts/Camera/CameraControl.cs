@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-/// <summary>
-/// 相机跟随类(已给出，无需修改)
-/// </summary>
 public class CameraControl : MonoBehaviour
 {
     public float m_DampTime = 0.2f;                     //相机重新对焦的时间。
@@ -35,7 +32,7 @@ public class CameraControl : MonoBehaviour
     }
 
 
-    private void FindAveragePosition()
+    private void FindAveragePosition()      //找到相机的目标的平均位置。
     {
         Vector3 averagePos = new Vector3();
         int numTargets = 0;
@@ -58,14 +55,14 @@ public class CameraControl : MonoBehaviour
     }
 
 
-    private void Zoom()
+    private void Zoom()     //找到相机的正交尺寸，以便它包含所有目标。
     {
         float requiredSize = FindRequiredSize();
         m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, requiredSize, ref m_ZoomSpeed, m_DampTime);
     }
 
 
-    private float FindRequiredSize()
+    private float FindRequiredSize()    //计算相机的正交尺寸，以便它包含所有目标。
     {
         Vector3 desiredLocalPos = transform.InverseTransformPoint(m_DesiredPosition);
 
