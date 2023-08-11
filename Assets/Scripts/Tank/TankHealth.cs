@@ -8,14 +8,13 @@ using System;
 /// </summary>
 public class TankHealth : MonoBehaviour
 {
-    [SerializeField]
-    private Slider healthSlider; //血条
+    [SerializeField] private Slider healthSlider; //血条
 
-    [SerializeField]
-    private GameObject tankExplosion; //坦克爆炸特效
+    [SerializeField] private GameObject damagePopupPrefab; // 飘血预制体
 
-    [SerializeField]
-    AudioSource explosionAudio; //音效组件
+    [SerializeField] private GameObject tankExplosion; //坦克爆炸特效
+
+    [SerializeField] AudioSource explosionAudio; //音效组件
 
     private float healthScore = 100; //血量
 
@@ -34,11 +33,17 @@ public class TankHealth : MonoBehaviour
     public void Damage(float amount) //调整坦克的当前健康状况，根据新健康状况更新UI并检查坦克是否已死亡。
     {
         healthScore -= amount;
+
+        /*GameObject damagePopupObject = Instantiate(damagePopupPrefab, transform.position, Quaternion.identity);
+        DamagePopup damagePopup = damagePopupObject.GetComponent<DamagePopup>();
+        damagePopup.Setup((int)amount);*/
+
         if (healthScore <= 0)
         {
             OnDeath();
             healthScore = 0;
         }
+
         SetHealthUI(healthScore);
     }
 

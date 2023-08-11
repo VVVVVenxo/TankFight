@@ -19,15 +19,7 @@ public class ShellExplosion : MonoBehaviour
 
     [SerializeField]
     AudioSource explosionAudio; //爆炸音效
-
-    // public enum ShellType
-    // {
-    //     Normal,
-    //     PowerUp
-    // }
-    // [SerializeField]
-    // private ShellType shellType = ShellType.Normal;
-    //
+    
     [SerializeField]
     private int damageValue;
 
